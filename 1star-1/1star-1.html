@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDM2 - W1P2 - 1 Star: Exercise 1</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./lib/main-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="./lib/libraries/p5.min.js"></script>
+    <script src="./lib/libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <h1>1 Star - Exercise 1</h1>
+    <p>Your sketch:</p>
+    <div class="guidance">
+        <h2>Instructions</h2>
+        <div>
+            <p>Note: This exercise assumes you remember how to create and use input controls, which 
+                was covered in PDM 1, Week 7 lecture 1.
+            </p>
+            <p>Your task is to create a (very) simplified account creation form. The form should allow 
+                a user to type in their chosen username. If the username is taken, it should display an 
+                appropriate message, e.g. "Username is taken! Please try again." If the username is available, 
+                show a success message.</p>
+            <p>Here are the steps:</p>
+            <ol>
+                <li>In sketch.js, create a canvas at a size of your choosing.</li>
+                <li>Create a global <code>Set()</code> to store usernames as they are added.</li>
+                <li>Add a <a href="https://p5js.org/reference/#/p5/createInput" target="_blank">text input</a> and a <a href="https://p5js.org/reference/#/p5/createButton" target="_blank">button</a> to 
+                    the canvas. Don't worry too much about making them look nice—the goal is to practice using a <code>Set</code>.</li>
+                <li>When the user clicks the button, get the username from the text input and:
+                    <ul>
+                        <li>...if the text is not empty and the username is not already in the set, add it to the set and show a success message of your choosing.</li>
+                        <li>...if the text is not empty but the username is taken, show a message informing the user that the username is taken.</li>
+                        <li>...if the text is empty, show a message saying that the username can't be empty.
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <p>You can choose to print messages to the console instead of showing them on the canvas.</p>
+            <p>There are no checks for this exercise. Consider writing your own tests for step 4.
+            </p>
+            <p>Expected output:</p>
+            <p>
+                <video width="300" height="200" controls>
+                    <source src="./assets/1star-1.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </p>
+        </div>
+        <div>
+            <button class="btn btn-primary hint" type="button" data-bs-toggle="collapse" data-bs-target="#hint" aria-expanded="false" aria-controls="hint">
+                Hint
+            </button>
+            <div class="collapse" id="hint">
+                <div class="card card-body">
+                    <p>You will need to write a function to serve as an event handler for the button. The function should be called when the button is clicked. Used 
+                        the <a href="https://p5js.org/reference/#/p5.Element/mouseClicked" target="_blank">mouseClicked()</a> method to connect the button to the event handler function. 
+                    </p>
+                    <p>Use the <a href="https://p5js.org/reference/#/p5.Element/value" target="_blank">value()</a> method to get the text in the input.</p>
+                    <p>The MDN <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set" target="_blank">Set</a> documentation will be helpful. You will 
+                    need to use two set methods: one to check if the username is already in the set and another to add the username.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="sketch.js"></script>
+  </body>
+</html>

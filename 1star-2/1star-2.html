@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDM2 - W1P2 - 1 Star: Exercise 2</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./lib/main-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="./lib/libraries/p5.min.js"></script>
+    <script src="./lib/libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <h1>1 Star - Exercise 2</h1>
+    <p>Your sketch:</p>
+    <div class="guidance">
+        <h2>Instructions</h2>
+        <div>
+            <p>In this exercise, you will create a sketch that changes fill and stroke 
+                colours based on the number of times the user has clicked the mouse.
+            </p>
+            <p>Here are the steps:</p>
+            <ol>
+                <li>In sketch.js, create two Maps: one to store fill colours and one to store stroke colours. You will also need a variable to track 
+                    the number of times the mouse has been clicked.
+                </li>
+                <li>After <code>createCanvas()</code> has been called, populate both maps with integer keys and <code>color</code> values. The keys represent the number of times 
+                    the user has clicked the mouse and the values represent the colour to change the fill or stroke to when that click count has been reached. You don't need 
+                    to set colours for every click. For example, in my code, I have fill colour Map entries for 1, 2, 4, 7, 11 etc. clicks, and I have stroke colour Map 
+                    entries for different click counts so that stroke and fill change at different times.</li>
+                <li>Implement <code>mouseClicked()</code> and use it to draw shapes in random locations. There should be the same number of shapes 
+                as there have been mouse clicks e.g. if the user has clicked the mouse twice, there should be two shapes on screen.</li>
+                <li>Use the Maps to set the fill and stroke colours: if a Map contains a key matching the number of clicks, set the colour using the value in the map.</li>
+            </ol>
+            <p>Expected output:</p>
+            <p>
+                <video width="400" height="400" controls>
+                    <source src="./assets/1star-2.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </p>
+        </div>
+        <div>
+            <button class="btn btn-primary hint" type="button" data-bs-toggle="collapse" data-bs-target="#hint" aria-expanded="false" aria-controls="hint">
+                Hint
+            </button>
+            <div class="collapse" id="hint">
+                <div class="card card-body">
+                    <p>The MDN <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" target="_blank">Map</a> documentation will be helpful. You will 
+                    need to use three methods: one to set the key-value pairs in each Map, one to check if a Map has a particular key, 
+                    and one to get the value associated with a particular key.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="sketch.js"></script>
+  </body>
+</html>

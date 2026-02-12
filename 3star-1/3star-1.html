@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDM2 - W1P1 - 3 Star - Exercise 1</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./lib/main-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="./lib/libraries/p5.min.js"></script>
+    <script src="./lib/libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <h1>3 Star - Exercise 1 - Noughts and crosses</h1>
+    <p>Your sketch:</p>
+    <div class="guidance">
+        <h2>Instructions</h2>
+        <div>
+            <p><em>This is an advanced exercise! You may not finish it during the practical session.</em></p>
+            <p>The focus of this exercise is to revisit your solution to the 3 star exercise from last time (noughts and crosses) and see if you can make your algorithm for determining if a player has won the game more efficient. Alternatively, you can start from the 
+                sample solution (go to the <a href="https://github.com/UoY-IM-PDM2-2324/PDM2-example-code" target="_blank">example code repo</a> / Practical solutions / W1P1 / 3star and copy the contents of sketch.js). If you choose to use the sample solution, the code 
+                to optimise can be found in the <code>checkWinner()</code> function.
+            </p>
+            <p>If you're working on your own code, look at your current 
+                algorithm and determine how many squares on the board it 
+                checks to figure out if there is a winner. Determine if it performs 
+            better (fewer checks) in some cases than others. If you're using the sample 
+        code, this step was covered in lecture so you may find it helpful to revisit the slides.</p>
+        <p>Try to make this portion of the code as efficient as possible. It should be possible to come up with 
+            a solution that checks the contents of, at most, eight squares on the board.
+        </p>
+            <p>
+                <video width="300" height="300" controls>
+                    <source src="./assets/3star.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </p>
+        </div>
+        <div>
+            <button class="btn btn-primary hint" type="button" data-bs-toggle="collapse" data-bs-target="#hint" aria-expanded="false" aria-controls="hint">
+                Hint
+            </button>
+            <div class="collapse" id="hint">
+                <div class="card card-body">
+                    <p>An efficient solution will only check what needs to be checked i.e. only what has changed since the last check!</p>
+                    <p>There is one square on the board that can be part of more winning lines than any other. Use this to determine your 
+                        worst case scenario.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="sketch.js"></script>
+  </body>
+</html>

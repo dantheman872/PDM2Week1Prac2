@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDM2 - W1P2 - 2 Star: Exercise 1</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./lib/main-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="./lib/libraries/p5.min.js"></script>
+    <script src="./lib/libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <h1>2 Star - Exercise 1</h1>
+    <p>Your sketch:</p>
+    <div class="guidance">
+        <h2>Instructions</h2>
+        <div>
+            <p>sketch.js contains code to create a basic chart. You will add functionality that will allow the user to sort the 
+                data points by different properties.
+            </p>
+            <p>Start by taking a look at the code already in sketch.js. The key things to look at are the <code>Data</code> class, which represents 
+            a data point (one column) for the chart, and <code>draw()</code>, which draws the <code>Data</code> objects as they appear 
+        in the <code>columns</code> array. The <code>columns</code> array is populated with random <code>Data</code> objects in the <code>randomShapes()</code> function.</p>
+            <p>Your task is to write custom sorting functions to enable the interactions described in the list below. See the hint for more guidance on sorting.</p>
+            <ul>
+                <li>When the user presses "w", sort the <code>columns</code> array by the <code>Data</code> objects' <code>width</code> property.</li>
+                <li>When the user presses "h", sort the <code>columns</code> array by the <code>Data</code> objects' <code>height</code> property.</li>
+                <li>When the user presses "c", sort the <code>columns</code> array by the <code>Data</code> objects' <code>colour</code> property. You can decide what it means to 
+                sort by colour. In the video below, colour values were sorted by the red channel, then the green channel, then the blue channel. See the hint for a 
+            reminder of how to access colour channel values separately.</li>
+                <li>Optional extension: allow the user to toggle between sorting in ascending order and sorting in descending order.</li>
+            </ul>
+            <p>Expected output:</p>
+            <p>
+                <video width="500" height="200" controls>
+                    <source src="./assets/2star-1.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </p>
+        </div>
+        <div>
+            <button class="btn btn-primary hint" type="button" data-bs-toggle="collapse" data-bs-target="#hint" aria-expanded="false" aria-controls="hint">
+                Hint
+            </button>
+            <div class="collapse" id="hint">
+                <div class="card card-body">
+                    <p>For guidance on sorting an array, see the MDN <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort" target="_blank">sort()</a> method. 
+                    In particular, look at the section on defining a custom sort function, called <code>compareFn</code> in the MDN reference. To use a custom sort 
+                function, call it as follows:</p>
+                    <pre>arr.sort(compareFn);</pre>
+                    <p>To sort by colour, you will not be able to compare colours directly using comparison operators because p5.js 
+                        <code>color</code> is an object. Instead, you should compare the red, green, and blue channels of each colour using 
+                        the p5.js <a href="https://p5js.org/reference/#/p5/red" target="_blank">red()</a>, <a href="https://p5js.org/reference/#/p5/green" target="_blank">green()</a>, and <a href="https://p5js.org/reference/#/p5/blue" target="_blank">blue()</a> functions. 
+                        For example:
+                    </p>
+                    <pre>
+if (red(a.colour) &lt; red(b.colour)) {
+    return -1;
+}
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="sketch.js"></script>
+  </body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDM2 - W1P2 - 2 Star: Exercise 2</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./lib/main-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="./lib/libraries/p5.min.js"></script>
+    <script src="./lib/libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <h1>2 Star - Exercise 2</h1>
+    <p>Your sketch:</p>
+    <div class="guidance">
+        <h2>Instructions</h2>
+        <div>
+            <p>The purpose of this exercise is to walk you through some of the capabilities of the JavaScript Map 
+                beyond what was shown in lecture, as well as some handy new syntax. It is a two-star exercise because of it's 
+                step-by-step format but the concepts themselves are three star.
+            </p>
+            <p>You will write a sketch that creates the output shown in the video below. There are many different ways 
+                to create this output without using Maps but, as the goal is to practice using particular capabilities of Maps, you should stick to the steps described here. 
+                There are two versions of the instructions. Pick the version that suits your comfort level and learning goals.
+            </p>
+            <ul>
+                <li><a href="#short">Short</a> - figure out the details yourself</li>
+                <li><a href="#long">Long</a> - for more guidance</li>
+            </ul>
+            <p>Expected output:</p>
+            <p>
+                <video width="400" height="400" controls>
+                    <source src="./assets/2star-2.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </p>
+            <h3 id="short">The short version (if you like to figure out the details yourself)</h3>
+            <p>Create an empty global Map, which will store information about shapes. After calling <code>createCanvas()</code>, populate your map with the <code>ellipse</code> and <code>rect</code> p5.js functions as keys and empty arrays as 
+                values. To use a function as a key, use its name with no parentheses or arguments--just like passing a function as an event listener.</p>
+            <p>When the mouse is clicked, create an array of values representing the arguments you could pass to either <code>ellipse()</code> or <code>rect()</code>. Use the mouse coordinates as the x and y arguments, and generate random width and height between 20 and 50. If the <code>frameCount</code> is even, 
+            push the arguments array to the array associated with the <code>ellipse</code> function in the map. Otherwise, push it to the array associated with the <code>rect</code> function. For this step, you should be able to take advantage of the fact that the values in 
+        the map are reference types (arrays).</p>
+            <p>Next, iterate through the map to draw the saved shapes. Iterating a map has slightly different syntax. Here is a template:</p>
+            <pre>
+for (const [key, value] of someMap) {
+    console.log(key);
+    console.log(value);
+}
+            </pre>
+            <p>Remember that <code>key</code> is a function—you can call is just like the original function it refers to e.g.: <code>key(x, y, width, height)</code>. Also remember that <code>value</code> is a 2D array. You will need a nested for loop 
+            to get to the saved arguments that should be passed to <code>key</code>.</p>
+            <p>Finally, explore how JavaScript's <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax" target="_blank">spread operator</a> could be used for the last step above.</p>
+            <h3 id="long">The long version (more detailed instructions and explanation)</h3>
+            <p>Create an empty global Map, which will store information about shapes. After <code>createCanvas()</code> has been 
+                called, populate your map with the <code>ellipse</code> and <code>rect</code> p5.js functions as keys and empty arrays as 
+                values. This is how to add the <code>ellipse</code> function (change <code>shapes</code> to the name of your Map variable):
+            </p>
+            <pre>shapes.set(ellipse, []);</pre>
+            <p>Notice that there are no brackets after the function name--this passes a reference to the original function rather than calling it.</p>
+            <p>Next, implement the <code>mouseClicked()</code> event function. When the user clicks the mouse, you will add an array containing values for 
+            the four arguments expected by the shape functions to the arrays in your Map. This probably sounds very convoluted so here are the steps:</p>
+            <ol>
+                <li>Inside <code>mouseClicked()</code>, create an array with four values representing the arguments expected by 
+                    either <code>ellipse()</code> or <code>rect()</code>. Use the mouse coordinates for the x and y arguments, and 
+                generate random values between 20 and 50 for the width and height. Your array should look something like:<pre>const args = [mouseX, mouseY, random(20, 50), random(20, 50)];</pre></li>
+                <li>If the <code>frameCount</code> system variable is even, push the array from the previous step to the array associated with the <code>ellipse</code> function 
+                in the map. Otherwise, push it to the array associated with the <code>rect</code> function. When a map stores primitive values, you need to use the <code>set()</code> method 
+            to change the value. However, when a value is a reference type like an array, you can modify it using the reference type's properties or methods. Here is the code to add the <code>args</code> array to the 
+        array associated with the <code>ellipse</code> function: <pre>shapes.get(ellipse).push(args);</pre></li>
+            </ol>
+            <p><code>shapes.get(ellipse)</code> gets the array that is the value for key <code>ellipse</code>. It is strongly recommended that you use <code>console.log()</code> to print out your map at the end of the <code>mouseClicked()</code> function. If you're at all unsure about 
+            what you see, please ask a staff member fo help.</p>
+            <p>Finally, add the <code>draw()</code> function. You can use a <code>for... of</code> loop to iterate through the entries in a map. It looks slightly different than other loops:</p>
+            <pre>
+for (const [key, value] of someMap) {
+
+}
+            </pre>
+            <p>Notice that the keyword <code>const</code> is followed by an array with two variables, <code>key</code> and <code>value</code>. When iterating a map, JavaScript automatically populates these 
+            variables with the key and value for each entry in the map. You can use different names if you prefer--the first variable will always be a key from the map and the second will always be 
+        the value associated with that key. Try printing each variable inside the loop e.g.:</p>
+        <pre>
+for (const [key, value] of shapes) {
+    console.log("key:", key);
+    console.log("value:", value);           
+}
+                        </pre>
+<p>Each key should be a function and each value should be a 2D array.</p>
+<p>Because each key is a function, you can call it directly, just like the original function. To test this out, try calling the "key" with some placeholder arguments. Your code should look something like:</p>
+<pre>for (const [key, value] of shapes) {
+    key(random(width), random(height), 100, 100);
+}
+</pre>
+<p>You should see an ellipse and rectangle at the placeholder locations. Next, you'll replace the placeholders with the real arguments saved in the map. Remember that <code>value</code> in the 
+example above is a 2D array that contains arrays of arguments to pass to each function. Inside the for loop you already have, add a second for loop to iterate through the nested arrays. Replace the placeholder 
+arguments with the appropriate values in each nested array.</p>
+<p>Your code probably looks something like:</p>
+<pre>for (const [key, value] of shapes) {
+    for (const item of value) {
+        key(item[0], item[1], item[2], item[3]);
+    }
+}
+</pre>
+<p>You can make this a bit shorter and neater using the 
+    JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax" target="_blank">spread operator</a>. 
+    The spread operator (three dots in front of a variable name) expands an 
+    array into a comma separated list of values. You can use it to copy values from one array to another or, as is useful here, to pass each item in an array as an argument to a function e.g.:</p>
+    <pre>for (const [key, value] of shapes) {
+        for (const item of value) {
+            key(...item);
+        }
+    }
+    </pre>
+    <p>You are done! Carefully review your code and make sure you understand it. Ask for clarification when needed!</p>
+        </div>
+        <div>
+            <button class="btn btn-primary hint" type="button" data-bs-toggle="collapse" data-bs-target="#hint" aria-expanded="false" aria-controls="hint">
+                Hint
+            </button>
+            <div class="collapse" id="hint">
+                <div class="card card-body">
+                    <p>Here is the complete code, for your reference. Use it to check your work if you get stuck but always make sure you understand any code 
+                        you copy and paste. Remember, the goal is to <em>learn</em> the concepts, not just to complete the task!
+                    </p>
+<pre>
+const shapes = new Map();
+
+function setup() {
+    createCanvas(400, 400);
+    shapes.set(ellipse, []);
+    shapes.set(rect, []);
+}
+
+function draw() {
+    background(255);
+    for (const [shapeFunction, arguments] of shapes) {
+        for (const args of arguments) {
+            shapeFunction(...args);
+        }
+    }
+}
+
+function mouseClicked() {
+    const args = [mouseX, mouseY, random(20, 50), random(20, 50)]
+    if (frameCount % 2 === 0) {
+        shapes.get(ellipse).push(args);
+    } else {
+        shapes.get(rect).push(args);
+    }
+}
+</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="sketch.js"></script>
+  </body>
+</html>
