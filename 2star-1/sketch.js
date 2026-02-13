@@ -15,6 +15,7 @@ function draw() {
         const y = height - columns[i].height;
         columns[i].draw(x, y);
     }
+    keyPressed()
 }
 
 
@@ -59,5 +60,14 @@ class Data {
         rectMode(CORNER);
         fill(this.colour);
         rect(x, y, this.width, this.height);
+    }
+}
+
+
+function keyPressed(){
+
+    if(key === "w"){
+
+        
     }
 }
