@@ -1,50 +1,54 @@
-const mapFill = new Map();
-const mapStroke = new Map()
+const fillColours = new Map();
+const strokeColours = new Map();
 let clickCount = 0;
-let x = []
-let y = []
 
-function setup(){
-
-    createCanvas(400, 400);    
-    mapFill.set(1, 0)
-    mapFill.set(3, 51)
-    mapFill.set(5, 102)
-    mapFill.set(7, 153)
-    mapFill.set(11, 204)
-    mapFill.set(13, 255)
-    mapStroke.set(1, 255)
-    mapStroke.set(2, 204)
-    mapStroke.set(4, 153)
-    mapStroke.set(8, 102)
-    mapStroke.set(16, 51)
-    mapStroke.set(32, 0)
+function setup() {
+    createCanvas(400, 400);
+    setupfillColours();
+    setupStrokeColours();
+    background(0);
+    strokeWeight(5);
 }
 
-function draw(){
+function draw() {
+}
 
-    background(220) 
-    strokeWeight(5)
-    if(mapFill.has(clickCount)){
-
-        fill(mapFill.get(clickCount))
+function mouseClicked() {
+    clickCount++;
+    background(0);
+    if (fillColours.has(clickCount)) {
+        fill(fillColours.get(clickCount));
     }
-
-    if(mapStroke.has(clickCount)){
-
-        stroke(mapStroke.get(clickCount))
+    if (strokeColours.has(clickCount)) {
+        stroke(strokeColours.get(clickCount));
     }
-
-    for(let i = 0; i < clickCount; i++){
-
-        circle(x[i], y[i], 80)
+    for (let i = 0; i < clickCount; i++) {
+        circle(random(50, width - 50), random(50, height - 50), 100);
     }
 }
 
-function mouseClicked(){
 
-    clickCount++
+/**
+ * Populates the fillColours map
+ */
+function setupfillColours() {
+    fillColours.set(1, color(255, 0, 0));
+    fillColours.set(3, color(0, 255, 0));
+    fillColours.set(6, color(0, 0, 255));
+    fillColours.set(10, color(255, 0, 255));
+    fillColours.set(15, color(255, 255, 0));
+    fillColours.set(21, color(255, 255, 0));
+}
 
-    x.push(random(40, width-40), random(40, height-40), 80)
-    y.push(random(40, width-40), random(40, height-40), 80)
+/**
+ * Populates the strokeColours map
+ */
+function setupStrokeColours() {
+    strokeColours.set(1, color(255));
+    strokeColours.set(2, color(255, 255, 0));
+    strokeColours.set(4, color(0, 255, 255));
+    strokeColours.set(7, color(255, 0, 255));
+    strokeColours.set(11, color(255, 0, 0));
+    strokeColours.set(16, color(0, 255, 0));
+    strokeColours.set(22, color(0, 0, 255));
 }
